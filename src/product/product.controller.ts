@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, Body, Query } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { Product } from './product.entity';
 
@@ -12,16 +12,8 @@ export class ProductController {
   }
 
   @Post()
-  getProducts(): Promise<Product[]> {
-    return this.productService.getProducts();
-  }
-
-  @Post('filter')
-  getProductsWithFilters(
-    @Body('category') category: string,
-    @Body('sort') sort: { key: string; type: 'ASC' | 'DESC' },
-  ): Promise<Product[]> {
-    const { key, type } = sort || {};
-    return this.productService.getProductsWithFilters(category, key, type);
+  async getProducts(@Body() body: { categories?: string[], sort?: { key: string; type: 'ASC' | 'DESC' } }): Promise<Product[]> {
+    const { categories, sort } = body;
+    return this.productService.getProductsWithFilters(categories, sort?.key, sort?.type);
   }
 }

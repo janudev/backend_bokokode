@@ -8,44 +8,69 @@ export class ProductService {
   constructor(
     @InjectRepository(Product)
     private productRepository: Repository<Product>,
-  ) { 
-    this.seedProducts()
-  }
+  ) {}
 
+  async deleteAllProducts() {
+    await this.productRepository.clear();
+  }  
+
+  // Get product by id - GET 
   async getProductById(id: number): Promise<Product> {
     return this.productRepository.findOneBy({ id });
   }
 
-  async getProducts(): Promise<Product[]> {
-    return this.productRepository.find();
-  }
-
+  // Get products with filters - POST
   async getProductsWithFilters(
-    category?: string,
-    sortKey?: string,
-    sortType?: 'ASC' | 'DESC',
+    categories?: string[], 
+    sortKey?: string, 
+    sortType: 'ASC' | 'DESC' = 'ASC',
   ): Promise<Product[]> {
     const query = this.productRepository.createQueryBuilder('product');
-    if (category) query.andWhere('product.category = :category', { category });
-    if (sortKey) query.orderBy(`product.${sortKey}`, sortType || 'ASC');
+  
+    // Filtrar por categorías
+    if (categories && categories.length > 0) {
+      query.andWhere('product.category IN (:...categories)', {
+        categories,
+      });
+    }
+  
+    // Ordenar por clave y tipo
+    if (sortKey) {
+      query.orderBy(`product.${sortKey}`, sortType);
+    }
+  
     return query.getMany();
-  }
-
-  async seedProducts() {
+  }  
+  
+  async seedDB() {
     const products = [
       {
-        name: 'Producto 1',
-        price: 100,
-        category: 'ciudades',
-        featured: false,
+        name: 'Mascotaaa',
+        category: 'pets',
+        price: 16,
+        currency: "EUR",
+        image: {
+          src: "https://technical-frontend-api.bokokode.com/img/Product_2.png",
+          alt: "Voluptas non praesentium sed molestiae."
+        },
         bestseller: false,
+        featured: false,
+        description: "Esto es una desc para mascota",
+        people_also_buy: []
       },
       {
-        name: 'Producto 2',
-        price: 150,
-        category: 'viajes',
-        featured: true,
+        name: 'Naturalezaa',
+        category: 'nature',
+        price: 160,
+        currency: "EUR",
+        image: {
+          src: "https://technical-frontend-api.bokokode.com/img/Product_1.png",
+          alt: "Illo illo aut similique odit qui."
+        },
         bestseller: true,
+        featured: true,
+        description: "Esto es una desc para mascota",
+        people_also_buy: []
       },
     ];
   
