@@ -48,7 +48,7 @@ export class ProductService {
     const products = [  
       {
         name: "Samurai King Resting",
-        category: "pets",
+        category: "Pets",
         price: 261,
         currency: "EUR",
         image: {
@@ -58,11 +58,54 @@ export class ProductService {
         bestseller: false,
         featured: true,
         description: "Molestias nam enim sunt. Doloremque voluptatem quisquam excepturi.",
-        people_also_buy: []
+        people_also_buy: [
+          {
+              name: "Man",
+              category: "People",
+              price: 261,
+              currency: "EUR",
+              image: {
+                src: "https://technical-frontend-api.bokokode.com/img/Product_4.png",
+                alt: "Accusamus officia sunt qui officiis quod."
+              },
+              bestseller: false,
+              featured: false,
+              description: "Incidunt libero consequatur inventore voluptas neque dolor odit. Suscipit quos ab quo voluptatem. Saepe a ut ad et ratione.",
+              people_also_buy: [],
+          },
+          {
+              name: "Everest Mountain",
+              category: "Nature",
+              price: 470,
+              currency: "EUR",
+              image: {
+                src: "https://technical-frontend-api.bokokode.com/img/Product_1.png",
+                alt: "Nostrum consequatur ut nesciunt quia hic qui quis."
+              },
+              bestseller: false,
+              featured: false,
+              description: "Molestias nam enim sunt. Doloremque voluptatem quisquam excepturi.",
+              people_also_buy: [],
+          },
+          {
+              name: "Eum maxime",
+              category: "Cities",
+              price: 306,
+              currency: "EUR",
+              image: {
+                src: "https://technical-frontend-api.bokokode.com/img/Product_6.png",
+                alt: "Tempore vel iste sed ea."
+              },
+              bestseller: false,
+              featured: false,
+              description: "Ab unde voluptate quidem omnis mollitia eligendi vitae animi. Eius praesentium asperiores est quia. Dolor earum eaque laudantium aperiam possimus temporibus amet et.",
+              people_also_buy: [],
+          }
+      ]
       },
       {
         name: "Nature Landscape",
-        category: "nature",
+        category: "Nature",
         price: 470,
         currency: "EUR",
         image: {
@@ -76,7 +119,7 @@ export class ProductService {
       },
       {
         name: "City Skyline",
-        category: "cities",
+        category: "Cities",
         price: 306,
         currency: "EUR",
         image: {
@@ -90,7 +133,7 @@ export class ProductService {
       },
       {
         name: "Urban Exploration",
-        category: "cities",
+        category: "Cities",
         price: 370,
         currency: "EUR",
         image: {
@@ -104,7 +147,7 @@ export class ProductService {
       },
       {
         name: "Gourmet Food",
-        category: "food",
+        category: "Food",
         price: 221,
         currency: "EUR",
         image: {
@@ -118,7 +161,7 @@ export class ProductService {
       },
       {
         name: "Red bench",
-        category: "people",
+        category: "People",
         price: 126,
         currency: "EUR",
         image: {
@@ -132,22 +175,22 @@ export class ProductService {
       },
       {
         name: "Architecture",
-        category: "landmarks",
-        price: 101.00,
+        category: "Landmarks",
+        price: 101,
         currency: "EUR",
         image: {
           src: "https://technical-frontend-api.bokokode.com/img/Product_2.png",
           alt: "Nostrum consequatur ut nesciunt quia hic qui quis."
         },
-        bestseller: false,
+        bestseller: true,
         featured: false,
         description: "Molestias nam enim sunt. Doloremque voluptatem quisquam excepturi.",
         people_also_buy: []
       },
       {
         name: "Premium window",
-        category: "premium",
-        price: 12.00,
+        category: "Premium",
+        price: 12,
         currency: "EUR",
         image: {
           src: "https://technical-frontend-api.bokokode.com/img/Product_5.png",
