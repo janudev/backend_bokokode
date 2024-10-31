@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, EntityManager } from 'typeorm';
 import { Product } from './product.entity';
 
 @Injectable()
@@ -8,10 +8,12 @@ export class ProductService {
   constructor(
     @InjectRepository(Product)
     private productRepository: Repository<Product>,
-  ) {}
+    private entityManager: EntityManager,
+  ) {  this.deleteAllProducts().then(() => this.seedDB()); }
 
   async deleteAllProducts() {
     await this.productRepository.clear();
+    await this.entityManager.query("DELETE FROM sqlite_sequence WHERE name='product'");
   }  
 
   // Get product by id - GET 
@@ -43,33 +45,117 @@ export class ProductService {
   }  
   
   async seedDB() {
-    const products = [
+    const products = [  
       {
-        name: 'Mascotaaa',
-        category: 'pets',
-        price: 16,
+        name: "Samurai King Resting",
+        category: "pets",
+        price: 261,
         currency: "EUR",
         image: {
-          src: "https://technical-frontend-api.bokokode.com/img/Product_2.png",
-          alt: "Voluptas non praesentium sed molestiae."
+          src: "https://technical-frontend-api.bokokode.com/img/Product_Featured_product.png",
+          alt: "Nostrum consequatur ut nesciunt quia hic qui quis."
         },
         bestseller: false,
-        featured: false,
-        description: "Esto es una desc para mascota",
+        featured: true,
+        description: "Molestias nam enim sunt. Doloremque voluptatem quisquam excepturi.",
         people_also_buy: []
       },
       {
-        name: 'Naturalezaa',
-        category: 'nature',
-        price: 160,
+        name: "Nature Landscape",
+        category: "nature",
+        price: 470,
         currency: "EUR",
         image: {
           src: "https://technical-frontend-api.bokokode.com/img/Product_1.png",
-          alt: "Illo illo aut similique odit qui."
+          alt: "Nostrum consequatur ut nesciunt quia hic qui quis."
+        },
+        bestseller: false,
+        description: "Molestias nam enim sunt. Doloremque voluptatem quisquam excepturi.",
+        featured: false,
+        people_also_buy: []
+      },
+      {
+        name: "City Skyline",
+        category: "cities",
+        price: 306,
+        currency: "EUR",
+        image: {
+          src: "https://technical-frontend-api.bokokode.com/img/Product_6.png",
+          alt: "Nostrum consequatur ut nesciunt quia hic qui quis."
+        },
+        bestseller: false,
+        featured: false,
+        description: "Molestias nam enim sunt. Doloremque voluptatem quisquam excepturi.",
+        people_also_buy: []
+      },
+      {
+        name: "Urban Exploration",
+        category: "cities",
+        price: 370,
+        currency: "EUR",
+        image: {
+          src: "https://technical-frontend-api.bokokode.com/img/Product_6.png",
+          alt: "Nostrum consequatur ut nesciunt quia hic qui quis."
         },
         bestseller: true,
-        featured: true,
-        description: "Esto es una desc para mascota",
+        featured: false,
+        description: "Molestias nam enim sunt. Doloremque voluptatem quisquam excepturi.",
+        people_also_buy: []
+      },
+      {
+        name: "Gourmet Food",
+        category: "food",
+        price: 221,
+        currency: "EUR",
+        image: {
+          src: "https://technical-frontend-api.bokokode.com/img/Product_3.png",
+          alt: "Nostrum consequatur ut nesciunt quia hic qui quis."
+        },
+        bestseller: false,
+        featured: false,
+        description: "Molestias nam enim sunt. Doloremque voluptatem quisquam excepturi.",
+        people_also_buy: []
+      },
+      {
+        name: "Red bench",
+        category: "people",
+        price: 126,
+        currency: "EUR",
+        image: {
+          src: "https://technical-frontend-api.bokokode.com/img/Product_4.png",
+          alt: "Nostrum consequatur ut nesciunt quia hic qui quis."
+        },
+        bestseller: false,
+        featured: false,
+        description: "Molestias nam enim sunt. Doloremque voluptatem quisquam excepturi.",
+        people_also_buy: []
+      },
+      {
+        name: "Architecture",
+        category: "landmarks",
+        price: 101.00,
+        currency: "EUR",
+        image: {
+          src: "https://technical-frontend-api.bokokode.com/img/Product_2.png",
+          alt: "Nostrum consequatur ut nesciunt quia hic qui quis."
+        },
+        bestseller: false,
+        featured: false,
+        description: "Molestias nam enim sunt. Doloremque voluptatem quisquam excepturi.",
+        people_also_buy: []
+      },
+      {
+        name: "Premium window",
+        category: "premium",
+        price: 12.00,
+        currency: "EUR",
+        image: {
+          src: "https://technical-frontend-api.bokokode.com/img/Product_5.png",
+          alt: "Nostrum consequatur ut nesciunt quia hic qui quis."
+        },
+        bestseller: false,
+        featured: false,
+        description: "Molestias nam enim sunt. Doloremque voluptatem quisquam excepturi.",
         people_also_buy: []
       },
     ];
@@ -79,5 +165,4 @@ export class ProductService {
       await this.productRepository.save(newProduct);
     }
   }
-  
-}
+}  
