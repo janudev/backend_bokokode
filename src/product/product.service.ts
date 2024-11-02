@@ -57,7 +57,7 @@ export class ProductService {
         },
         bestseller: false,
         featured: true,
-        description: "Molestias nam enim sunt. Doloremque voluptatem quisquam excepturi.",
+        description: "Molestias nam enim sunt. Doloremque voluptatem quisquam excepturi Molestias nam enim sunt. Doloremque voluptatem quisquam excepturi Molestias nam enim sunt. Doloremque voluptatem quisquam excepturi Molestias nam enim sunt. Doloremque voluptatem quisquam excepturi.",
         people_also_buy: [
           {
               name: "Man",
@@ -68,7 +68,7 @@ export class ProductService {
                 src: "https://technical-frontend-api.bokokode.com/img/Product_4.png",
                 alt: "Accusamus officia sunt qui officiis quod."
               },
-              bestseller: false,
+              bestseller: true,
               featured: false,
               description: "Incidunt libero consequatur inventore voluptas neque dolor odit. Suscipit quos ab quo voluptatem. Saepe a ut ad et ratione.",
               people_also_buy: [],
