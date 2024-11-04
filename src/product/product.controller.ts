@@ -12,8 +12,10 @@ export class ProductController {
   }
 
   @Post()
-  async getProducts(@Body() body: { categories?: string[], sort?: { key: string; type: 'ASC' | 'DESC' } }): Promise<Product[]> {
-    const { categories, sort } = body;
-    return this.productService.getProductsWithFilters(categories, sort?.key, sort?.type);
+  async getProducts(
+    @Body() body: { categories?: string[], sort?: { key: string; type: 'ASC' | 'DESC' }, page?: number, pageSize?: number }
+  ): Promise<{ products: Product[], total: number }> {
+    const { categories, sort, page, pageSize } = body;
+    return this.productService.getProductsWithFilters(categories, sort?.key, sort?.type, page, pageSize);
   }
 }
