@@ -29,7 +29,7 @@ export const productData: Partial<Product>[] = [
               people_also_buy: [],
           },
           {
-              name: "Everest Mountain",
+              name: "Everest Moun",
               category: "Nature",
               price: 470,
               currency: "EUR",
